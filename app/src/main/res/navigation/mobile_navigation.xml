@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_dashboard">
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="io.rajeshp.adaptiveapp.ui.main.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_payments"
+        android:name="io.rajeshp.adaptiveapp.ui.main.payments.PaymentsFragment"
+        android:label="@string/title_payments"
+        tools:layout="@layout/fragment_payments" />
+
+    <fragment
+        android:id="@+id/navigation_foryou"
+        android:name="io.rajeshp.adaptiveapp.ui.main.foryou.ForYouFragment"
+        android:label="@string/title_foryou"
+        tools:layout="@layout/fragment_foryou" />
+
+    <fragment
+        android:id="@+id/navigation_contact_banker"
+        android:name="io.rajeshp.adaptiveapp.ui.main.contactbanker.ContactBankerFragment"
+        android:label="@string/title_contact_banker"
+        tools:layout="@layout/fragment_contact_banker" />
+
+    <fragment
+        android:id="@+id/navigation_more"
+        android:name="io.rajeshp.adaptiveapp.ui.main.more.MoreFragment"
+        android:label="@string/title_more"
+        tools:layout="@layout/fragment_more" />
+</navigation>

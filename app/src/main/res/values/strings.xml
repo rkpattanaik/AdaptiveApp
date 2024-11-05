@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AdaptiveApp</string>
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_payments">Payments</string>
+    <string name="title_foryou">For You</string>
+    <string name="title_contact_banker">Contact Banker</string>
+    <string name="title_more">More</string>
+    <string name="quick_access">QUICK ACCESS</string>
+    <string name="overview_graph">Overview Graph</string>
+    <string name="quick_payments">QUICK PAYMENTS</string>
+    <string name="all_payments">ALL PAYMENTS</string>
+    <string name="insights">Insights</string>
+    <string name="events">Events</string>
+</resources>
