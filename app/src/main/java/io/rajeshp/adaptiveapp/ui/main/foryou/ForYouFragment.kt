@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import io.rajeshp.adaptiveapp.databinding.FragmentForyouBinding
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import io.rajeshp.adaptiveapp.R
 import io.rajeshp.adaptiveapp.ui.common.MenuAdapter
+import io.rajeshp.adaptiveapp.ui.main.more.MoreFragmentDirections
 
 class ForYouFragment : Fragment() {
-    private var _binding: FragmentForyouBinding? = null
-    private val binding get() = _binding!!
 
     private val viewModel by viewModels<ForYouViewModel>()
 
@@ -21,13 +24,33 @@ class ForYouFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentForyouBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        val menuAdapter = MenuAdapter {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        val view = inflater.inflate(R.layout.fragment_foryou, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val isTablet = requireContext().resources.getBoolean(R.bool.isTablet)
+        var navController = findNavController()
+        if (isTablet) {
+            val childNavHostFragment = childFragmentManager.findFragmentById(R.id.foryou_nav_container) as NavHostFragment
+            navController = childNavHostFragment.navController
         }
 
-        with(binding.menu) {
+        val insights = view.findViewById<CardView>(R.id.insights)
+        val events = view.findViewById<CardView>(R.id.events)
+        val menu = view.findViewById<RecyclerView>(R.id.menu)
+        val menuAdapter = MenuAdapter { navigateToDetails(it, navController) }
+
+        insights.setOnClickListener {
+            navigateToDetails("Insights", navController)
+        }
+
+        events.setOnClickListener {
+            navigateToDetails("Events", navController)
+        }
+
+        with(menu) {
             isNestedScrollingEnabled = false
             adapter = menuAdapter
         }
@@ -36,11 +59,9 @@ class ForYouFragment : Fragment() {
             menuAdapter.menuItems = it
         }
 
-        return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun navigateToDetails(title: String, navController: NavController) {
+        navController.navigate(ForYouFragmentDirections.actionForyouToDetails(title))
     }
 }

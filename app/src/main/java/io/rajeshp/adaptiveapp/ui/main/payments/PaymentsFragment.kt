@@ -4,16 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import io.rajeshp.adaptiveapp.databinding.FragmentPaymentsBinding
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import io.rajeshp.adaptiveapp.R
 import io.rajeshp.adaptiveapp.ui.common.GridMenuAdapter
 import io.rajeshp.adaptiveapp.ui.common.MenuAdapter
+import io.rajeshp.adaptiveapp.ui.main.more.MoreFragmentDirections
 
 class PaymentsFragment : Fragment() {
-    private var _binding: FragmentPaymentsBinding? = null
-    private val binding get() = _binding!!
 
     private val viewModel by viewModels<PaymentsViewModel>()
 
@@ -22,21 +24,30 @@ class PaymentsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPaymentsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        val quickAccessAdapter = GridMenuAdapter {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        }
-        val menuAdapter = MenuAdapter {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        val view = inflater.inflate(R.layout.fragment_payments, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val isTablet = requireContext().resources.getBoolean(R.bool.isTablet)
+        var navController = findNavController()
+        if (isTablet) {
+            val childNavHostFragment = childFragmentManager.findFragmentById(R.id.payments_nav_container) as NavHostFragment
+            navController = childNavHostFragment.navController
         }
 
-        with(binding.quickAccess) {
+        val quickAccess = view.findViewById<RecyclerView>(R.id.quickAccess)
+        val menu = view.findViewById<RecyclerView>(R.id.menu)
+        val quickAccessAdapter = GridMenuAdapter { navigateToDetails(it, navController) }
+        val menuAdapter = MenuAdapter { navigateToDetails(it, navController) }
+
+        with(quickAccess) {
             isNestedScrollingEnabled = false
             adapter = quickAccessAdapter
         }
 
-        with(binding.menu) {
+        with(menu) {
             isNestedScrollingEnabled = false
             adapter = menuAdapter
         }
@@ -50,12 +61,9 @@ class PaymentsFragment : Fragment() {
                 menuAdapter.menuItems = it
             }
         }
-
-        return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun navigateToDetails(title: String, navController: NavController) {
+        navController.navigate(PaymentsFragmentDirections.actionPaymentsToDetails(title))
     }
 }

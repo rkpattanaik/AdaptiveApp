@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_dashboard"
+        app:cnb_iconColor="@color/purple_500"/>
 
     <item
         android:id="@+id/navigation_payments"
         android:icon="@drawable/ic_payments_black_24dp"
-        android:title="@string/title_payments" />
+        android:title="@string/title_payments"
+        app:cnb_iconColor="@color/purple_500"/>
 
     <item
         android:id="@+id/navigation_foryou"
         android:icon="@drawable/ic_foryou_black_24dp"
-        android:title="@string/title_foryou" />
+        android:title="@string/title_foryou"
+        app:cnb_iconColor="@color/purple_500"/>
 
     <item
         android:id="@+id/navigation_contact_banker"
         android:icon="@drawable/ic_contact_banker_black_24dp"
-        android:title="@string/title_contact_banker" />
+        android:title="@string/title_contact_banker"
+        app:cnb_iconColor="@color/purple_500"/>
 
     <item
         android:id="@+id/navigation_more"
         android:icon="@drawable/ic_more_black_24dp"
-        android:title="@string/title_more" />
+        android:title="@string/title_more"
+        app:cnb_iconColor="@color/purple_500"/>
 
 </menu>

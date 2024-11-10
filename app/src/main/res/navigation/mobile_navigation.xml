@@ -9,19 +9,46 @@
         android:id="@+id/navigation_dashboard"
         android:name="io.rajeshp.adaptiveapp.ui.main.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboard_to_details"
+            app:destination="@id/navigation_details">
+            <argument
+                android:name="title"
+                app:argType="string"
+                android:defaultValue="Menu Item" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_payments"
         android:name="io.rajeshp.adaptiveapp.ui.main.payments.PaymentsFragment"
         android:label="@string/title_payments"
-        tools:layout="@layout/fragment_payments" />
+        tools:layout="@layout/fragment_payments">
+        <action
+            android:id="@+id/action_payments_to_details"
+            app:destination="@id/navigation_details">
+            <argument
+                android:name="title"
+                app:argType="string"
+                android:defaultValue="Menu Item" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_foryou"
         android:name="io.rajeshp.adaptiveapp.ui.main.foryou.ForYouFragment"
         android:label="@string/title_foryou"
-        tools:layout="@layout/fragment_foryou" />
+        tools:layout="@layout/fragment_foryou">
+        <action
+            android:id="@+id/action_foryou_to_details"
+            app:destination="@id/navigation_details">
+            <argument
+                android:name="title"
+                app:argType="string"
+                android:defaultValue="Menu Item" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_contact_banker"
@@ -33,5 +60,25 @@
         android:id="@+id/navigation_more"
         android:name="io.rajeshp.adaptiveapp.ui.main.more.MoreFragment"
         android:label="@string/title_more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more">
+        <action
+            android:id="@+id/action_more_to_details"
+            app:destination="@id/navigation_details">
+            <argument
+                android:name="title"
+                app:argType="string"
+                android:defaultValue="Menu Item" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_details"
+        android:name="io.rajeshp.adaptiveapp.ui.common.DetailsFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="Menu Item" />
+    </fragment>
 </navigation>
